@@ -17,9 +17,20 @@ int sizeWord(char* word)
 
 void concat(char* word1, char* word2, char* result) 
 {
-	result = word1;
-	result[strlen(word1)] = (char)word2;
-	result[strlen(word1) + strlen(word2)] = '\0';
+	int size1 = strlen(word1);
+	int size2 = strlen(word2);
+
+	for (int i = 0; i < size1; i++)
+	{
+		result[i] = word1[i];
+	}
+
+	for (int i = 0; i < size2; i++)
+	{
+		result[size1 + i] = word2[i];
+	}
+
+	result[size1 + size2] = '\0';
 }
 
 int main()
@@ -43,9 +54,6 @@ int main()
 	concat(word1, word2, conc);
 	
 	printCharPtr(conc);
-
-	std::cout << word1 << std::endl;
-	std::cout << word2 << std::endl;
 
 	free(conc);
 
