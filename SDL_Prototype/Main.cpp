@@ -7,7 +7,7 @@
 
 // Screen dimension constants
 const int SCREEN_WIDTH = 742;
-const int SCREEN_HEIGHT = 833;
+const int SCREEN_HEIGHT = 800;
 
 //Starts up SDL and creates Window
 bool init();
