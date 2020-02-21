@@ -5,7 +5,7 @@
 #pragma comment( lib, "SDL/libx86/SDL2main.lib" )
 
 
-// Screen dimension constants
+//Screen dimension constants
 const int SCREEN_WIDTH = 742;
 const int SCREEN_HEIGHT = 800;
 
@@ -43,7 +43,7 @@ bool init()
 	else
 	{
 		//Create window
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("AhegaoElCapo", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			std::cout << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
