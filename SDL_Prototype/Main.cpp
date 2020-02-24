@@ -125,6 +125,10 @@ int main(int argc, char* args[])
 			SDL_BlitSurface(gImage2, NULL, gScreenSurface, NULL);
 			SDL_UpdateWindowSurface(gWindow);
 			SDL_Delay(3000);
+
+			SDL_FillRect(gScreenSurface, NULL, SDL_MapRGB(gScreenSurface->format, 20, 200, 60));
+			SDL_UpdateWindowSurface(gWindow);
+			SDL_Delay(2000);
 		}
 
 		//Free resources and close SDL
