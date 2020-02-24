@@ -26,7 +26,6 @@ SDL_Surface* gScreenSurface = NULL;
 
 //The image we will load and show on the screen
 SDL_Surface* gImage = NULL;
-SDL_Surface* gImage2 = NULL;
 
 
 bool init()
@@ -71,13 +70,6 @@ bool loadMedia()
 		success = false;
 	}
 
-	gImage2 = SDL_LoadBMP("Papaoso.bmp");
-	if (gImage2 == NULL)
-	{
-		std::cout << "Unable to load the image! SDL Error: " << SDL_GetError() << std::endl;
-		success = false;
-	}
-
 	return success;
 }
 
@@ -86,8 +78,6 @@ void close()
 	//Dealocate surface
 	SDL_FreeSurface(gImage);
 	gImage = NULL;
-	SDL_FreeSurface(gImage2);
-	gImage2 = NULL;
 
 	//Destroy window
 	SDL_DestroyWindow(gWindow);
@@ -119,12 +109,25 @@ int main(int argc, char* args[])
 			//Update Surface
 			SDL_UpdateWindowSurface(gWindow);
 
-			//Wait two seconds
-			SDL_Delay(2000);
+			//Main loop flag
+			bool quit = false;
 
-			SDL_BlitSurface(gImage2, NULL, gScreenSurface, NULL);
-			SDL_UpdateWindowSurface(gWindow);
-			SDL_Delay(3000);
+			//Event handler
+			SDL_Event e;
+
+			//While app is running
+			while (!quit)
+			{
+				//Handle events on queue
+				while(SDL_PollEvent(&e) != 0)
+				{
+					//User requests quit
+					if (e.type == SDL_QUIT)
+					{
+						quit = true;
+					}
+				}
+			}
 		}
 
 		//Free resources and close SDL
