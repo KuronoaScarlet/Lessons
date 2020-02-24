@@ -122,7 +122,7 @@ int main(int argc, char* args[])
 				while(SDL_PollEvent(&e) != 0)
 				{
 					//User requests quit
-					if (e.type == SDL_QUIT)
+					if (e.type == SDL_QUIT) 
 					{
 						quit = true;
 					}
