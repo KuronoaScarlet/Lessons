@@ -4,8 +4,8 @@
 #pragma comment( lib, "SDL/libx86/SDL2.lib" )
 #pragma comment( lib, "SDL/libx86/SDL2main.lib" )
 
-const int SCREEN_WIDTH = 742;
-const int SCREEN_HEIGHT = 800;
+const int SCREEN_WIDTH = 600;
+const int SCREEN_HEIGHT = 600;
 
 bool init();
 
