@@ -109,18 +109,14 @@ int main(int argc, char* args[])
 			//Update Surface
 			SDL_UpdateWindowSurface(gWindow);
 
-<<<<<<< HEAD:SDL_Prototype/Main.cpp
+
 			//Wait two seconds
 			SDL_Delay(2000);
-
-			SDL_BlitSurface(gImage2, NULL, gScreenSurface, NULL);
-			SDL_UpdateWindowSurface(gWindow);
-			SDL_Delay(3000);
 
 			SDL_FillRect(gScreenSurface, NULL, SDL_MapRGB(gScreenSurface->format, 20, 200, 60));
 			SDL_UpdateWindowSurface(gWindow);
 			SDL_Delay(2000);
-=======
+
 			//Main loop flag
 			bool quit = false;
 
@@ -140,7 +136,6 @@ int main(int argc, char* args[])
 					}
 				}
 			}
->>>>>>> 37f05c07a78cafd4036b69b90bda76cfd392a5fa:SDL_Lessons/SDL_Lesson1/Main.cpp
 		}
 
 		//Free resources and close SDL
