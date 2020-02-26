@@ -9,8 +9,6 @@ const int SCREEN_HEIGHT = 800;
 
 bool init();
 
-bool loadMedia();
-
 void close();
 
 SDL_Window* gWindow = NULL;
