@@ -65,11 +65,14 @@ int main(int argc, char* args[])
 	{
 		while (!quit)
 		{
+			SDL_FillRect(gScreenSurface, NULL, SDL_MapRGB(gScreenSurface->format, 20, 200, 60));
+			SDL_UpdateWindowSurface(gWindow);
+			
 			while (SDL_PollEvent(&e) != 0)
 			{
 				switch (e.type)
 				{
-				case SDL_KEYDOWN:
+				case SDL_KEYUP:
 					if (e.key.keysym.sym == SDLK_ESCAPE)
 					{
 						quit = true;
@@ -77,10 +80,6 @@ int main(int argc, char* args[])
 					break;
 				}
 			}
-
-			SDL_FillRect(gScreenSurface, NULL, SDL_MapRGB(gScreenSurface->format, 20, 200, 60));
-			SDL_UpdateWindowSurface(gWindow);
-			SDL_Delay(2000);
 		}
 
 		close();
