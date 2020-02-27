@@ -30,7 +30,7 @@ bool init()
 	}
 	else
 	{
-		Window = SDL_CreateWindow("Render", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
+		Window = SDL_CreateWindow("Render",100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
 		
 		return success;
 	}
@@ -60,18 +60,17 @@ int main(int argc, char* args[])
 		int Sy = 250;
 
 		SDL_Rect fillRect = { 250, 250, 100, 100 };
+		Square = SDL_CreateRenderer(Window, -1, 0);
 
 		while (!quit)
 		{
-			Square = SDL_CreateRenderer(Window, -1, 0);
-
 			SDL_SetRenderDrawColor(Square, 255, 0, 0, 255);
+
+			SDL_RenderFillRect(Square, &fillRect);
+			SDL_RenderPresent(Square);
 
 			while (SDL_PollEvent(&e) != 0)
 			{
-				SDL_RenderFillRect(Square, &fillRect);
-				SDL_RenderPresent(Square);
-
 				switch (e.type)
 				{
 				case SDL_KEYDOWN:
@@ -89,17 +88,18 @@ int main(int argc, char* args[])
 						fillRect = { Sx, Sy, 100, 100 };
 						break;
 					case SDLK_UP:
-						Sy += 10;
+						Sy -= 10;
 						fillRect = { Sx, Sy, 100, 100 };
 						break;
 					case SDLK_DOWN:
-						Sy -= 10;
+						Sy += 10;
 						fillRect = { Sx, Sy, 100, 100 };
 						break;
 					}
 					break;
 				}
 			}
+			SDL_RenderClear(Square);
 		}
 
 		close();
