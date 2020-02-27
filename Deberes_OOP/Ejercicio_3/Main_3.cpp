@@ -21,14 +21,18 @@ struct Weapon
 
 void Pirate::printPirateInfo(const Pirate& p)
 {
-	cout << "-- Pirate --" << endl << "Name = " << name << endl << "Life = " << life;
+	cout << "-- Pirate --" << endl << "Name = " << name << endl << "Life = " << life << endl;
 }
 
 void Weapon::printWeaponInfo(const Weapon& w)
 {
-	cout << "-- Weapon --" << endl << "Name = " << name << endl << "Damage = " << dmg;
+	cout << "-- Weapon --" << endl << "Name = " << name << endl << "Damage = " << dmg << endl;
 }
 
+void attack(Pirate* p, Weapon w)
+{
+	p->life = p->life - w.dmg;
+}
 
 int main()
 {
@@ -36,11 +40,19 @@ int main()
 	Weapon weapon;
 
 	pirate.printPirateInfo(pirate);
+	cout << endl;
+
 	weapon.printWeaponInfo(weapon);
+	cout << endl;
 
-	attack(&)
+	system("pause");
 
+	attack(&pirate, weapon);
 
+	cout << endl;
+	pirate.printPirateInfo(pirate);
+
+	cout << endl;
 	system("pause");
 	return 0;
 
