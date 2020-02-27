@@ -14,7 +14,7 @@ bool init();
 void close();
 
 SDL_Window* Window = NULL;
-
+SDL_Surface* ScreenSurface = NULL;
 SDL_Renderer* Back = NULL;
 SDL_Renderer* Square = NULL;
 
@@ -30,8 +30,8 @@ bool init()
 	}
 	else
 	{
-		Window = SDL_CreateWindow("Render",100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
-		
+		Window = SDL_CreateWindow("Render", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
+		ScreenSurface = SDL_GetWindowSurface(Window);
 		return success;
 	}
 }
@@ -49,6 +49,7 @@ int main(int argc, char* args[])
 {
 	bool quit = false;
 	SDL_Event e;
+	
 
 	if (!init())
 	{
@@ -56,7 +57,8 @@ int main(int argc, char* args[])
 	}
 	else
 	{
-
+		SDL_FillRect(ScreenSurface, NULL, SDL_MapRGB(ScreenSurface->format, 127, 255, 127));
+		SDL_UpdateWindowSurface(Window);
 		SDL_Rect fillRect = { 250, 250, 100, 100 };
 		Square = SDL_CreateRenderer(Window, -1, 0);
 		SDL_SetRenderDrawColor(Square, 255, 0, 0, 255);
