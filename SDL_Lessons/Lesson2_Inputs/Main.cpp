@@ -56,19 +56,15 @@ int main(int argc, char* args[])
 	}
 	else
 	{
-		int Sx = 250;
-		int Sy = 250;
 
 		SDL_Rect fillRect = { 250, 250, 100, 100 };
 		Square = SDL_CreateRenderer(Window, -1, 0);
+		SDL_SetRenderDrawColor(Square, 255, 0, 0, 255);
+		SDL_RenderFillRect(Square, &fillRect);
+		SDL_RenderPresent(Square);
 
 		while (!quit)
 		{
-			SDL_SetRenderDrawColor(Square, 255, 0, 0, 255);
-
-			SDL_RenderFillRect(Square, &fillRect);
-			SDL_RenderPresent(Square);
-
 			while (SDL_PollEvent(&e) != 0)
 			{
 				switch (e.type)
@@ -80,25 +76,23 @@ int main(int argc, char* args[])
 						quit = true;
 						break;
 					case SDLK_RIGHT:
-						Sx += 10;
-						fillRect = { Sx, Sy, 100, 100 };
+						fillRect.x += 10;
 						break;
 					case SDLK_LEFT:
-						Sx -= 10;
-						fillRect = { Sx, Sy, 100, 100 };
+						fillRect.x -= 10;
 						break;
 					case SDLK_UP:
-						Sy -= 10;
-						fillRect = { Sx, Sy, 100, 100 };
+						fillRect.y -= 10;
 						break;
 					case SDLK_DOWN:
-						Sy += 10;
-						fillRect = { Sx, Sy, 100, 100 };
+						fillRect.y += 10;
 						break;
 					}
 					break;
 				}
 			}
+			SDL_RenderPresent(Square);
+			SDL_RenderFillRect(Square, &fillRect);
 			
 		}
 
