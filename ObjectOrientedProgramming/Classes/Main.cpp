@@ -78,8 +78,9 @@ int main()
 	enemy2.printValues();
 
 	enemy1.setLife(100);
-	
 
+	enemy1.printValues();
+	enemy2.printValues();
 
 	system("pause");
 	return 0;
