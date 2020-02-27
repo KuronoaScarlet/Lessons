@@ -99,7 +99,7 @@ int main(int argc, char* args[])
 					break;
 				}
 			}
-			SDL_RenderClear(Square);
+			
 		}
 
 		close();
