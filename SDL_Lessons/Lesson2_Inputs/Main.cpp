@@ -7,15 +7,16 @@
 const int SCREEN_WIDTH = 600;
 const int SCREEN_HEIGHT = 600;
 
+
+
 bool init();
 
 void close();
 
-SDL_Window* gWindow = NULL;
+SDL_Window* Window = NULL;
 
-SDL_Surface* gScreenSurface = NULL;
-
-
+SDL_Renderer* Back = NULL;
+SDL_Renderer* Square = NULL;
 
 
 bool init()
@@ -29,24 +30,16 @@ bool init()
 	}
 	else
 	{
-		gWindow = SDL_CreateWindow("AhegaoElCapo", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-		if (gWindow == NULL)
-		{
-			std::cout << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;
-		}
-		else
-		{
-			gScreenSurface = SDL_GetWindowSurface(gWindow);
-		}
-
+		Window = SDL_CreateWindow("Render", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
+		
 		return success;
 	}
 }
 
 void close()
 {
-	SDL_DestroyWindow(gWindow);
-	gWindow = NULL;
+	SDL_DestroyWindow(Window);
+	Window = NULL;
 
 	SDL_Quit();
 }
@@ -63,19 +56,46 @@ int main(int argc, char* args[])
 	}
 	else
 	{
+		int Sx = 250;
+		int Sy = 250;
+
+		SDL_Rect fillRect = { 250, 250, 100, 100 };
+
 		while (!quit)
 		{
-			SDL_FillRect(gScreenSurface, NULL, SDL_MapRGB(gScreenSurface->format, 20, 200, 60));
-			SDL_UpdateWindowSurface(gWindow);
-			
+			Square = SDL_CreateRenderer(Window, -1, 0);
+
+			SDL_SetRenderDrawColor(Square, 255, 0, 0, 255);
+
 			while (SDL_PollEvent(&e) != 0)
 			{
+				SDL_RenderFillRect(Square, &fillRect);
+				SDL_RenderPresent(Square);
+
 				switch (e.type)
 				{
-				case SDL_KEYUP:
-					if (e.key.keysym.sym == SDLK_ESCAPE)
+				case SDL_KEYDOWN:
+					switch (e.key.keysym.sym)
 					{
+					case SDLK_ESCAPE:
 						quit = true;
+						break;
+					case SDLK_RIGHT:
+						Sx += 10;
+						fillRect = { Sx, Sy, 100, 100 };
+						break;
+					case SDLK_LEFT:
+						Sx -= 10;
+						fillRect = { Sx, Sy, 100, 100 };
+						break;
+					case SDLK_UP:
+						Sy += 10;
+						fillRect = { Sx, Sy, 100, 100 };
+						break;
+					case SDLK_DOWN:
+						Sy -= 10;
+						fillRect = { Sx, Sy, 100, 100 };
+						break;
 					}
 					break;
 				}
