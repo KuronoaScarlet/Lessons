@@ -126,7 +126,7 @@ void Game::Draw()
 
 	SDL_Rect back = { i, 0, 3072, 768 };
 	SDL_RenderCopy(Renderer, back_img, NULL, &back);
-
+	
 
 	//Draw player
 	SDL_Rect rc;
