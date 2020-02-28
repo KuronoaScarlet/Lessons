@@ -30,6 +30,10 @@ public:
 private:
 	SDL_Window *Window;
 	SDL_Renderer *Renderer;
+	SDL_Surface* image;
+	SDL_Texture* img_player;
+	SDL_Texture* img_shot;
+	SDL_Texture* back_img;
 
 	Entity Player, Shots[MAX_SHOTS];
 	int idx_shot;

@@ -26,26 +26,33 @@ bool Game::Init()
 		return false;
 	}
 	//Initialize IMG
-	int flags = IMG_INIT_PNG;
-	IMG_Init(flags);
-	int initted = IMG_Init(flags);
-	if (initted & flags != flags)
-	{
-		SDL_Log("Failed to init required jpg and png support: %s", IMG_GetError());
-	}
+	IMG_Init(IMG_INIT_PNG);
+	image = IMG_Load("spaceship.png");
+	img_player = SDL_CreateTextureFromSurface(Renderer, image);
+	SDL_FreeSurface(image);
+
+	image = IMG_Load("shot.png");
+	img_shot = SDL_CreateTextureFromSurface(Renderer, image);
+	SDL_FreeSurface(image);
+
+	image = IMG_Load("background.png");
+	back_img = SDL_CreateTextureFromSurface(Renderer, image);
+	SDL_FreeSurface(image);
 
 	//Initialize keys array
 	for (int i = 0; i < MAX_KEYS; ++i)
 		keys[i] = KEY_IDLE;
 
 	//Init variables
-	Player.Init(20, WINDOW_HEIGHT / 2, 82, 104, 7);
+	Player.Init(20, WINDOW_HEIGHT / 2, 104, 82, 7);
 	idx_shot = 0;
 
 	return true;
 }
 void Game::Release()
 {
+	SDL_DestroyTexture(img_player);
+	
 	//Clean up all SDL initialized subsystems
 	SDL_Quit();
 }
@@ -110,15 +117,23 @@ bool Game::Update()
 void Game::Draw()
 {
 	//Set the color used for drawing operations
-	SDL_SetRenderDrawColor(Renderer, 255, 255, 255, 255);
+	SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 255);
 	//Clear rendering target
 	SDL_RenderClear(Renderer);
+
+	//Draw background
+	int i = 0;
+
+	SDL_Rect back = { i, 0, 3072, 768 };
+	SDL_RenderCopy(Renderer, back_img, NULL, &back);
+
 
 	//Draw player
 	SDL_Rect rc;
 	Player.GetRect(&rc.x, &rc.y, &rc.w, &rc.h);
-	SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 255);
-	SDL_RenderFillRect(Renderer, &rc);
+	SDL_RenderCopy(Renderer, img_player, NULL, &rc);
+	
+	
 	
 	//Draw shots
 	SDL_SetRenderDrawColor(Renderer, 0, 0, 192, 255);
@@ -127,7 +142,7 @@ void Game::Draw()
 		if (Shots[i].IsAlive())
 		{
 			Shots[i].GetRect(&rc.x, &rc.y, &rc.w, &rc.h);
-			SDL_RenderFillRect(Renderer, &rc);
+			SDL_RenderCopy(Renderer, img_shot, NULL, &rc);
 		}
 	}
 
