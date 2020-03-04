@@ -47,6 +47,10 @@ bool Game::Init()
 	Player.Init(20, WINDOW_HEIGHT / 2, 104, 82, 7);
 	idx_shot = 0;
 
+	int w;
+	SDL_QueryTexture(back_img, NULL, NULL, &w, NULL);
+	Scene.Init(0, 0, w, WINDOW_HEIGHT, 4);
+
 	return true;
 }
 void Game::Release()
@@ -100,6 +104,10 @@ bool Game::Update()
 	}
 
 	//Logic
+
+	Scene.Move(-1, 0);
+	if (Scene.GetX() <= -Scene.GetWidth())	Scene.SetX(0);
+
 	//Player update
 	Player.Move(fx, fy);
 	//Shots update
@@ -116,20 +124,21 @@ bool Game::Update()
 }
 void Game::Draw()
 {
+	SDL_Rect rc;
+
 	//Set the color used for drawing operations
 	SDL_SetRenderDrawColor(Renderer, 0, 0, 0, 255);
 	//Clear rendering target
 	SDL_RenderClear(Renderer);
 
 	//Draw background
-	int i = 0;
-
-	SDL_Rect back = { i, 0, 3072, 768 };
-	SDL_RenderCopy(Renderer, back_img, NULL, &back);
+	Scene.GetRect(&rc.x, &rc.y, &rc.w, &rc.h);
+	SDL_RenderCopy(Renderer, back_img, NULL, &rc);
+	rc.x += rc.w;
+	SDL_RenderCopy(Renderer, back_img, NULL, &rc);
 	
 
 	//Draw player
-	SDL_Rect rc;
 	Player.GetRect(&rc.x, &rc.y, &rc.w, &rc.h);
 	SDL_RenderCopy(Renderer, img_player, NULL, &rc);
 	

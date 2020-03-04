@@ -35,7 +35,7 @@ private:
 	SDL_Texture* img_shot;
 	SDL_Texture* back_img;
 
-	Entity Player, Shots[MAX_SHOTS];
+	Entity Player, Shots[MAX_SHOTS], Scene;
 	int idx_shot;
 
 	enum KEY_STATE { KEY_IDLE, KEY_DOWN, KEY_REPEAT, KEY_UP	};
