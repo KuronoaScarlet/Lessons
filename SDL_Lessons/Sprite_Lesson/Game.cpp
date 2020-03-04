@@ -56,6 +56,8 @@ bool Game::Init()
 void Game::Release()
 {
 	SDL_DestroyTexture(img_player);
+	SDL_DestroyTexture(img_shot);
+	SDL_DestroyTexture(back_img);
 	
 	//Clean up all SDL initialized subsystems
 	SDL_Quit();
