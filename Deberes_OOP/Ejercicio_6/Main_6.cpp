@@ -24,6 +24,15 @@ public:
 		}
 	}
 
+	bool minor(const Clock& time2) const
+	{
+		bool minor = false;
+		if ((h < time2.h && min < time2.min && sec < time2.sec))
+		{
+			return true;
+		}
+	}
+
 	Clock setTime(unsigned int h, unsigned int min, unsigned int sec)
 	{
 		Clock setter;
@@ -49,13 +58,17 @@ int main()
 	c1.printTime();
 	c2.printTime();
 
+	if (c1.minor(c2) == true)
+	{
+		std::cout << "El primer reloj presenta un tiempo menor al segundo:" << std::endl;
+	}
+
 	c1 = c1.setTime(23, 59, 59);
 
 	if (c2.equal(c1) == true)
 	{
-		std::cout << "El set time se ha hecho correctamente." << std::endl;
+		std::cout << "Tras el set time, los relojes son iguales" << std::endl;
 	}
-
 
 	c1.printTime();
 	c2.printTime();
