@@ -1,42 +1,65 @@
 #include <iostream>
 #include <stdlib.h>
 
-class Player
+class Clock
 {
 private:
-	char name[15];
-	unsigned short int lifes;
-	bool invencible;
-	bool* capabilities;
-	bool* weapon;
+	int h, min, sec;
 
 public:
-	Player(char name[15]) 
-	{
-		lifes = 3;
-		invencible = false;
-	}
-	~Player();
+	Clock() : h(0), min(0), sec(0) { }
+	Clock(int pH, int pMin, int pSec) : h(pH), min(pMin), sec(pSec){ }
 
-	char getName()
-	{
-		return name[15];
-	}
+	//Getters
+	int hours() const { return h; }
+	int minutes() const { return min; }
+	int seconds() const { return sec; }
 
-	void printNumLifes()
+	bool equal(const Clock& time2) const
 	{
-		std::cout << lifes << std::endl;
-	}
-
-	void printInvencible()
-	{
-		if (invencible == true) std::cout << name << " is invencible" << std::endl;
+		bool equal = false;
+		if (h == time2.h && min == time2.min && sec == time2.sec)
+		{
+			return true;
+		}
 	}
 
-	void printCapabilities()
+	Clock setTime(unsigned int h, unsigned int min, unsigned int sec)
 	{
-		std::cout << capabilities[0] << capabilities[1] << capabilities[2] << std::endl;
+		Clock setter;
+
+		setter.h = h;
+		setter.min = min;
+		setter.sec = sec;
+
+		return setter;
 	}
 
-
+	void printTime()
+	{
+		std::cout << h << ":" << min << ":" << sec << std::endl;
+	}
 };
+
+int main()
+{
+	Clock c1;
+	Clock c2(23, 59, 59);
+
+	c1.printTime();
+	c2.printTime();
+
+	c1 = c1.setTime(23, 59, 59);
+
+	if (c2.equal(c1) == true)
+	{
+		std::cout << "El set time se ha hecho correctamente." << std::endl;
+	}
+
+
+	c1.printTime();
+	c2.printTime();
+
+	system("pause");
+	return 0;
+}
