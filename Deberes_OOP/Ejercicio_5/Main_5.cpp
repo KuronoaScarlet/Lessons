@@ -4,6 +4,8 @@
 
 using namespace std;
 
+//Hola
+
 #define TEST(cond, message) \
 if (cond) { cout << "OK - " << message << endl; } \
  else { cout << "ERROR - " << message << endl; }
@@ -31,7 +33,8 @@ public:
 		this->x *= f;
 		this->y *= f;
 		this->z *= f;
-	}	
+	}
+	
 };
 
 float length(const vec3& v) {
