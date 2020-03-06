@@ -62,6 +62,10 @@ int main()
 	{
 		std::cout << "El primer reloj presenta un tiempo menor al segundo:" << std::endl;
 	}
+	else
+	{
+		std::cout << "El segundo reloj presenta un tiempo menor al primero:" << std::endl;
+	}
 
 	c1 = c1.setTime(23, 59, 59);
 
