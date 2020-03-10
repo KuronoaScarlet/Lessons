@@ -53,6 +53,7 @@ bool Game::Init()
 
 	return true;
 }
+
 void Game::Release()
 {
 	SDL_DestroyTexture(img_player);
@@ -62,6 +63,7 @@ void Game::Release()
 	//Clean up all SDL initialized subsystems
 	SDL_Quit();
 }
+
 bool Game::Input()
 {
 	SDL_Event event;
@@ -82,6 +84,7 @@ bool Game::Input()
 
 	return true;
 }
+
 bool Game::Update()
 {
 	//Read Input
@@ -124,6 +127,7 @@ bool Game::Update()
 		
 	return false;
 }
+
 void Game::Draw()
 {
 	SDL_Rect rc;
