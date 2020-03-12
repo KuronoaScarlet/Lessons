@@ -32,11 +32,13 @@ public:
 private:
 	SDL_Window* Window;
 	SDL_Renderer* Render;
+	SDL_Renderer* Render2;
 	SDL_Surface* Image;
 	SDL_Texture* player;
+	SDL_Texture* player2;
 	SDL_Texture* shot;
 
-	Entity Player, Shots[MAX_SHOTS], Scene;
+	Entity Player1, Player2, Shots1[MAX_SHOTS], Shots2[MAX_SHOTS], Scene;
 	int idx_shot;
 
 	enum KEY_STATE { KEY_IDLE, KEY_DOWN, KEY_REPEAT, KEY_UP };

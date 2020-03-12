@@ -36,7 +36,7 @@ bool Game::Init()
 	for (int i = 0; i < MAX_KEYS; ++i)
 		keys[i] = KEY_IDLE;
 
-	Player.Init(20, WINDOW_HEIGHT / 2, 90, 75, 7);
+	Player1.Init(20, WINDOW_HEIGHT / 2, 90, 75, 7);
 	idx_shot = 0;
 
 	return true;
@@ -85,10 +85,8 @@ bool Game::Update()
 	if (keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
 	{
 		int x, y, w, h;
-		Player.GetRect(&x, &y, &w, &h);
-		Shots[idx_shot].Init(x + w - 40, y + (h >> 1) - 19, 32, 32, 5);
-		idx_shot++;
-		Shots[idx_shot].Init(x + w - 40, y + (h >> 1) - 19, 32, 32, 5);
+		Player1.GetRect(&x, &y, &w, &h);
+		Shots1[idx_shot].Init(x + w - 40, y + (h >> 1) - 19, 32, 32, 5);
 		idx_shot++;
 		idx_shot %= MAX_SHOTS;
 	}
@@ -96,14 +94,14 @@ bool Game::Update()
 	Scene.Move(-1, 0);
 	if (Scene.GetX() <= -Scene.GetWidth())	Scene.SetX(0);
 
-	Player.Move(fx, fy);
+	Player1.Move(fx, fy);
 
 	for (int i = 0; i < MAX_SHOTS; ++i)
 	{
-		if (Shots[i].IsAlive())
+		if (Shots1[i].IsAlive())
 		{
-			Shots[i].Move(1, 0);
-			if (Shots[i].GetX() > WINDOW_WIDTH)	Shots[i].ShutDown();
+			Shots1[i].Move(1, 0);
+			if (Shots1[i].GetX() > WINDOW_WIDTH)	Shots1[i].ShutDown();
 		}
 	}
 
@@ -118,21 +116,21 @@ void Game::Draw()
 	Uint32 seconds = ticks / 100;
 	Uint32 sprite = seconds % 4;
 
-	SDL_Rect srcrect = { sprite * 58, 0, 58, 51 };
+	SDL_Rect srcrect = { sprite * 58, 0, 58, 54 };
 
 	SDL_SetRenderDrawColor(Render, 0, 0, 0, 255);
 	SDL_RenderClear(Render);
 
-	Player.GetRect(&rc.x, &rc.y, &rc.w, &rc.h);
+	Player1.GetRect(&rc.x, &rc.y, &rc.w, &rc.h);
 	SDL_RenderClear(Render);
 	SDL_RenderCopy(Render, player, &srcrect, &rc);
 
 	SDL_SetRenderDrawColor(Render, 0, 0, 192, 255);
 	for (int i = 0; i < MAX_SHOTS; ++i)
 	{
-		if (Shots[i].IsAlive())
+		if (Shots1[i].IsAlive())
 		{
-			Shots[i].GetRect(&rc.x, &rc.y, &rc.w, &rc.h);
+			Shots1[i].GetRect(&rc.x, &rc.y, &rc.w, &rc.h);
 			SDL_RenderCopy(Render, shot, NULL, &rc);
 		}
 	}
