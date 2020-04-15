@@ -45,7 +45,7 @@ public:
 		int newSize = _size + s._size;
 		char* newData = new char[newSize];
 		strcpy_s(newData, _size, _data);
-		strcat_s(newData[_size + 1], s._data);
+		strcat(newData, s._data);
 		delete[] _data;
 		_data = newData;
 		//TODO: Calcular el numero total de letras entre _size y s._size
