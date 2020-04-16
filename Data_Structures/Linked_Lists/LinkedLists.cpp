@@ -72,7 +72,7 @@ public:
 			Node* itl = last;
 			node->value = value;
 
-			for (unsigned int i = 1; i < index - 1; i++)
+			for (unsigned int i = 0; i < index - 1; i++)
 			{
 				itf = itf->next;
 			}
@@ -105,26 +105,32 @@ public:
 			toErease = first;
 			itf = itf->next;
 			delete toErease;
+			itf = first;
 		}
-		
-
-		for (unsigned int i = 1; i < index - 1; i++)
+		else if (index != 0 && index != num_elems - 1)
 		{
-			itf = itf->next;
-		}
-		for (unsigned int i = num_elems; i > index + 1; i--)
-		{
-			itl = itl->prev;
-		}
+			for (unsigned int i = 0; i < index - 1; i++)
+			{
+				itf = itf->next;
+			}
+			for (unsigned int i = num_elems; i > index + 1; i--)
+			{
+				itl = itl->prev;
+			}
 
-		toErease = itf->next;
-
-		if (toErease == itl->prev)
-		{
+			toErease = itf->next;
 			delete toErease;
 			itf->next = itl;
 			itl->prev = itf;
 		}
+		else if (index == num_elems - 1)
+		{
+			toErease = last;
+			itl = itl->prev;
+			delete toErease;
+			itl = last;
+		}
+
 		num_elems--;
 	}
 
