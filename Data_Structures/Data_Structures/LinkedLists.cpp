@@ -3,12 +3,12 @@
 using namespace std;
 
 // Declaration of a doubly-linked list
-class List {
+class LinkedList {
 public:
 
 	// Constructor and destructor
-	List();
-	~List();
+	LinkedList();
+	~LinkedList();
 
 	// Modifiers
 	void push_front(const int& value)
@@ -52,10 +52,13 @@ public:
 		num_elems++;
 	}
 
-	void pop_front();
-	void pop_back();
-	void insert(unsigned int position, const int& value);
-	void erase(unsigned int position)
+	//void pop_front();
+
+	//void pop_back();
+
+	//void insert(unsigned int position, const int& value);
+
+	/*void erase(unsigned int index)
 	{
 		assert(index < num_elems);
 		Node* toErease = first;
@@ -85,16 +88,47 @@ public:
 
 		delete toErease;
 		num_elems--;
+	}*/
+
+	void print()
+	{
+		Node* it = first;
+		while (it != nullptr)
+		{
+			cout << it->value << endl;
+			it = it->next;
+		}
 	}
 
-	void clear();
+	//void clear();
 
 	// Getters
-	int& front();
-	int& back();
-	int& value_at(unsigned int position);
-	bool empty() const;
-	unsigned int size() const;
+	int& front() { return first->value; }
+
+	int& back() { return last->value; }
+
+	/*int& value_at(unsigned int index)
+	{
+		Node* it = first;
+		for (int i = 0; i <= index; i++)
+		{
+			if (it->next == nullptr)
+			{
+				it = last;
+				i = index;
+			}
+			it->next;
+		}
+
+		return it->value;
+	}*/
+
+	//bool empty() const;
+
+	unsigned int size() const
+	{
+		
+	}
 private:
 
 	// Internal struct for list nodes
@@ -108,5 +142,16 @@ private:
 	Node* first = nullptr;
 	Node* last = nullptr;
 	unsigned int num_elems = 0;
-	unsigned int index = 0;
-};
+};int main(){
+	LinkedList list1;
+
+	//TODO: push_back, push_front, print
+	list1.push_back(10);
+	list1.push_back(20);
+	list1.push_back(30);
+	list1.push_front(0);
+	list1.print();
+	//Shuold print 0 10 20 30
+	
+
+	system("pause");	return 0;}
