@@ -72,16 +72,19 @@ public:
 			Node* itl = last;
 			node->value = value;
 
-			for (int i = 1; i < index; i++)
+			for (unsigned int i = 1; i < index - 1; i++)
 			{
 				itf = itf->next;
 			}
-			for (int i = num_elems; i > index; i--)
+			for (unsigned int i = num_elems; i > index + 1; i--)
 			{
 				itl = itl->prev;
 			}
+
 			node->prev = itf;
 			node->next = itl;
+			itf->next = node;
+			itl->prev = node;
 			num_elems++;
 		}
 		else if (index == num_elems)
@@ -90,37 +93,40 @@ public:
 		}
 	}
 
-	/*void erease(unsigned int index)
+	void erease(unsigned int index)
 	{
-		assert(index < num_elems);
-		Node* toErease = first;
+		assert(index <= num_elems);
+		Node* toErease;
+		Node* itf = first;
+		Node* itl = last;
 
-		for (int i = 0; i < index; i++)
+		if (index == 0)
 		{
-			toErease = toErease->next;
+			toErease = first;
+			itf = itf->next;
+			delete toErease;
 		}
+		
 
-		if (toErease->prev != nullptr)
+		for (unsigned int i = 1; i < index - 1; i++)
 		{
-			toErease->prev->next = toErease->next;
+			itf = itf->next;
 		}
-		else
+		for (unsigned int i = num_elems; i > index + 1; i--)
 		{
-			first = toErease->next;
-		}
-
-		if (toErease->next != nullptr)
-		{
-			toErease->next->prev = toErease->prev;
-		}
-		else
-		{
-			last = toErease->prev;
+			itl = itl->prev;
 		}
 
-		delete toErease;
+		toErease = itf->next;
+
+		if (toErease == itl->prev)
+		{
+			delete toErease;
+			itf->next = itl;
+			itl->prev = itf;
+		}
 		num_elems--;
-	}*/
+	}
 
 	void print()
 	{
@@ -138,7 +144,7 @@ public:
 	int& front() { return first->value; }
 	int& back() { return last->value; }
 	//int& value_at(unsigned int index);
-	//bool empty() const;
+	bool empty() const { return true == (num_elems == 0); }
 	unsigned int size() const { return num_elems; }
 
 private:
@@ -175,6 +181,15 @@ int main()
 	list1.insert(3, 15);
 	list1.print();
 	//Should print -1 0 10 15 20 30 100
+
+	cout << endl;
+
+	//TODO 3: erease
+	list1.erease(6);
+	list1.erease(0);
+	list1.erease(3);
+	list1.print();
+	//Should print 0 10 15 30
 
 
 	system("pause");
