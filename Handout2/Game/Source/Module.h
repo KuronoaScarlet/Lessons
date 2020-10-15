@@ -26,8 +26,6 @@ public:
 		return true;
 	}
 
-
-
 	// Called before the first frame
 	virtual bool Start()
 	{
@@ -58,13 +56,13 @@ public:
 		return true;
 	}
 
-    // L02: TODO 2: Create new virtual methods to Load / Save
+    // L02: DONE 2: Create new virtual methods to Load / Save state
 	virtual bool LoadState(pugi::xml_node&)
 	{
 		return true;
 	}
 
-	virtual bool SaveState(pugi::xml_node&)
+	virtual bool SaveState(pugi::xml_node&) const
 	{
 		return true;
 	}
