@@ -8,6 +8,9 @@ public class DialogueManager : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
 
+    [Range(.01f, .1f)]
+    public float textSpeed;
+
     public Animator animator;
 
     private Queue<string> sentences;
@@ -52,7 +55,8 @@ public class DialogueManager : MonoBehaviour
         foreach(char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return new WaitForSeconds(.05f);
+            if(letter.ToString() != "." && letter.ToString() != "," && letter.ToString() != ";" && letter.ToString() != ":" && letter.ToString() != "!" && letter.ToString() != "?" && letter.ToString() != " ") FindObjectOfType<AudioManager>().Play("VoiceSound");
+            yield return new WaitForSeconds(textSpeed);
         }
     }
 

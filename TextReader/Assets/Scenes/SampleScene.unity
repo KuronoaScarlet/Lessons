@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 224238276}
   dialogueText: {fileID: 221468146}
+  textSpeed: 0.075
   animator: {fileID: 1953994884}
 --- !u!4 &187151809
 Transform:
@@ -487,6 +488,57 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &593048718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 593048720}
+  - component: {fileID: 593048719}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &593048719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593048718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe00ee0d524e89049bc03e0a62c3e195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: VoiceSound
+    clip: {fileID: 8300000, guid: d79e583367dd5c944b9405e127cce378, type: 3}
+    volume: 0.6
+    pitch: 0.9
+    loop: 0
+    variablePitch: 1
+    source: {fileID: 0}
+--- !u!4 &593048720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593048718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &712466181
@@ -662,7 +714,7 @@ RectTransform:
   - {fileID: 1350276179}
   - {fileID: 1953994881}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -733,7 +785,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1350276178
 GameObject:
@@ -882,11 +934,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: Kuma
+    name: Test
     sentences:
-    - Mamahuevo. Pito es un tonto, tonto, tonto, tonto, tonto, tonto, que eres tonto.
-    - Mamamamamamamamama wah wah wah!
-    - Weh!
+    - This is a test text!
+    - Wah!!!
+    - The Voice Sound only pops off when a letter is shown.
+    - Try changing some things at the Audio Manager!
 --- !u!1 &1368535696
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,7 +976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 500.02, y: -87.1}
+  m_AnchoredPosition: {x: 470.83, y: -73}
   m_SizeDelta: {x: 140.9541, y: 34.7356}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368535698
