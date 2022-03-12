@@ -49,4 +49,20 @@ public class AudioManager : MonoBehaviour
 
         s.source.Play();
     }
+
+    public void VolumeSliderValue(float volume)
+    {
+        foreach (Sound s in sounds)
+        {
+            s.source.volume = volume;
+        }
+    }
+
+    public void PitchSliderValue(float pitch)
+    {
+        foreach (Sound s in sounds)
+        {
+            s.pitch = pitch;
+        }
+    }
 }

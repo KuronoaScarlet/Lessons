@@ -64,4 +64,9 @@ public class DialogueManager : MonoBehaviour
     {
         animator.SetBool("IsOpen", false);
     }
+
+    public void ExitApplication()
+    {
+        Application.Quit();
+    }
 }

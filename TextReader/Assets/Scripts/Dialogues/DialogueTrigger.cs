@@ -10,4 +10,9 @@ public class DialogueTrigger : MonoBehaviour
     {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
+
+    public void ReadStringInput(string s)
+    {
+        dialogue.sentences[0] = s;
+    }
 }
